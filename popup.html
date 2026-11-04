@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Domain Intel</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #ffffff;
+      --panel: #f7f8fa;
+      --border: #e7e9ee;
+      --text: #14181f;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --accent-text: #ffffff;
+      --danger: #b42318;
+      --danger-soft: #fef3f2;
+      --danger-border: #f5c2bd;
+      --success: #067647;
+      --radius: 8px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1216;
+        --panel: #161b21;
+        --border: #262c34;
+        --text: #e7ebf0;
+        --muted: #98a1ad;
+        --accent: #3b7bff;
+        --danger: #ff8a7a;
+        --danger-soft: #241514;
+        --danger-border: #5a2723;
+        --success: #56d364;
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      width: 384px;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 13px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mark {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius);
+      display: grid;
+      place-items: center;
+      background: var(--accent);
+      color: var(--accent-text);
+      flex: 0 0 auto;
+    }
+    .mark svg { width: 15px; height: 15px; display: block; }
+
+    .brand { display: flex; flex-direction: column; line-height: 1.25; }
+    .brand-title { font-size: 13px; font-weight: 600; }
+    .brand-sub { font-size: 11px; color: var(--muted); }
+    .spacer { flex: 1; }
+
+    .icon-btn {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+    }
+    .icon-btn:hover { background: var(--panel); color: var(--text); }
+    .icon-btn:disabled { opacity: .5; cursor: default; }
+    .icon-btn svg { width: 14px; height: 14px; }
+    .spin { animation: spin .9s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .hero { padding: 16px; }
+
+    .hero-top { display: flex; align-items: flex-start; gap: 8px; }
+
+    .domain {
+      flex: 1;
+      min-width: 0;
+      margin: 0;
+      font-family: var(--mono);
+      font-size: 14.5px;
+      font-weight: 600;
+      line-height: 1.4;
+      letter-spacing: -.01em;
+      word-break: break-all;
+    }
+
+    .badge {
+      flex: 0 0 auto;
+      margin-top: 1px;
+      padding: 2px 7px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .badge.new { color: var(--danger); background: var(--danger-soft); border-color: var(--danger-border); }
+    .badge.ok { color: var(--success); }
+
+    .age { margin: 6px 0 0; font-size: 12px; color: var(--muted); }
+    .age b { color: var(--text); font-weight: 600; }
+
+    .note {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border: 1px solid var(--danger-border);
+      border-radius: var(--radius);
+      background: var(--danger-soft);
+      color: var(--danger);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .section { padding: 14px 16px; border-top: 1px solid var(--border); }
+
+    .label {
+      margin: 0 0 8px;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 4px 0;
+      font-size: 12.5px;
+    }
+    .row dt { color: var(--muted); flex: 0 0 auto; }
+    .row dd { margin: 0; text-align: right; font-weight: 500; word-break: break-word; }
+    .row dd.mono { font-family: var(--mono); font-size: 11.5px; font-weight: 400; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip {
+      padding: 3px 7px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--panel);
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      padding: 12px 16px 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .btn {
+      flex: 1;
+      height: 32px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: transparent;
+      color: var(--text);
+      font-size: 12.5px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .btn:hover { background: var(--panel); }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
+    .btn.primary:hover { filter: brightness(1.08); }
+
+    .state { padding: 40px 20px; text-align: center; }
+    .state-title { font-size: 13px; font-weight: 600; margin: 0 0 2px; }
+    .state-sub { font-size: 12px; color: var(--muted); margin: 0; }
+
+    .error { padding: 16px; }
+    .error-body {
+      padding: 10px 12px;
+      border: 1px solid var(--danger-border);
+      border-radius: var(--radius);
+      background: var(--danger-soft);
+      color: var(--danger);
+      font-size: 12px;
+    }
+
+    .skeleton { padding: 16px; display: grid; gap: 10px; }
+    .sk {
+      height: 12px;
+      border-radius: 6px;
+      background: linear-gradient(90deg, var(--panel) 25%, var(--border) 37%, var(--panel) 63%);
+      background-size: 400% 100%;
+      animation: shimmer 1.2s ease infinite;
+    }
+    .sk.tall { height: 34px; }
+    .sk.short { width: 55%; }
+    @keyframes shimmer { from { background-position: 100% 0; } to { background-position: 0 0; } }
+    @media (prefers-reduced-motion: reduce) { .sk, .spin { animation: none; } }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3l7 3v5.5c0 4.4-2.9 7.9-7 9.5-4.1-1.6-7-5.1-7-9.5V6l7-3z"/>
+        <path d="M9 12l2.2 2.2L15.5 10"/>
+      </svg>
+    </div>
+    <div class="brand">
+      <span class="brand-title">Domain Intel</span>
+      <span class="brand-sub">RDAP lookup</span>
+    </div>
+    <div class="spacer"></div>
+    <button id="refresh" class="icon-btn" title="Refresh" aria-label="Refresh" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12a9 9 0 1 1-2.6-6.4"/>
+        <path d="M21 3v6h-6"/>
+      </svg>
+    </button>
+  </header>
+
+  <main id="content">
+    <div class="skeleton" aria-busy="true">
+      <div class="sk tall"></div>
+      <div class="sk short"></div>
+      <div class="sk"></div>
+    </div>
+  </main>
+
+  <script src="popup.js"></script>
+</body>
+</html>
